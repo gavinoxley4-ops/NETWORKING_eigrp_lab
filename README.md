@@ -1,4 +1,4 @@
-# Network Engineering Lab 3 – Distance Vector Routing & Layer 3 Redundancy  
+# Project: Distance Vector Routing & Layer 3 Redundancy  
 Gavin Oxley
 
 This repository documents my implementation of Lab 3 from my Network Engineering course.  
@@ -15,7 +15,7 @@ The goal of the lab was to deploy a multi-router, multi-switch enterprise networ
 
 All documentation in this repository was written by me in my own words.  
 
-The official lab manual from my class wasn't included to avoid any copyright issues or academic integrity violations, but an abridged version was created in the Overview doc to explain the purpose of the lab.
+The official lab manual from the class wasn't included to avoid any copyright issues or academic integrity violations, but an abridged version was created in the Overview doc to explain the purpose of the lab.
 
 ---
 
@@ -69,7 +69,7 @@ Performed on the edge router; all private networks overload to the public/WAN in
 ---
 
 ## Purpose?
-This repo serves as a public record of my network engineering lab work and demonstrates my skills in:
+This repo serves as a public record of our network engineering lab work and demonstrates skills in:
 - Routing protocols  
 - Layer 3 redundancy  
 - Multi-vendor configuration  
