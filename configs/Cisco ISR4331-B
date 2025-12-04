@@ -1,0 +1,254 @@
+Building configuration...
+
+Current configuration : 7462 bytes
+!
+! Last configuration change at 13:09:31 EDT Tue Oct 28 2025
+! NVRAM config last updated at 12:54:51 EDT Mon Oct 27 2025
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service call-home
+platform qfp utilization monitor load 80
+platform punt-keepalive disable-kernel-core
+!
+hostname G11-4331B
+!
+boot-start-marker
+boot system bootflash:isr4300-universalk9.17.12.05a.SPA.bin
+boot-end-marker
+!
+!
+vrf definition Mgmt-intf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+no aaa new-model
+clock timezone EST -5 0
+clock summer-time EDT recurring
+!
+ip name-server 44.2.1.44 44.2.1.45 44.2.2.44 44.2.2.45
+ip domain name g11.cit.lcl
+!
+!
+!
+!
+!
+!
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+multilink bundle-name authenticated
+!
+!
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+ hash sha512
+!
+crypto pki trustpoint TP-self-signed-92998300
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-92998300
+ revocation-check none
+ rsakeypair TP-self-signed-92998300
+ hash sha512
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0
+  D697DF7F 28
+        quit
+crypto pki certificate chain TP-self-signed-92998300
+ certificate self-signed 01
+  3082032C 30820214 A0030201 02020101 300D0609 2A864886 F70D0101 0D050030
+  2F312D30 2B060355 04030C24 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 39323939 38333030 301E170D 32353039 30383233 35303230
+  5A170D33 35303930 38323335 3032305A 302F312D 302B0603 5504030C 24494F53
+  2D53656C 662D5369 676E6564 2D436572 74696669 63617465 2D393239 39383330
+  30308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201 0A028201
+  0100ECF5 B6A9A1A1 A01B5C3E 145C600E B8B296D4 157750F8 BCF18A89 BDACEDF4
+  71BC3ECA 05572788 8367CFF4 C96C2813 B801FB6F 5AEE3686 DD34C69D 34171D84
+  73455B3E 76AA2438 F0ABDDB8 153C9CD2 9E55C38B DD2D33A0 2F7C71C9 44D2D6FA
+  DE003479 3623C894 D36B7970 DB38DA69 F98FB5F5 DD183617 0D3B1C81 88EF9D8A
+  F2FF7A1F B4AB7CA4 2F2AD8CD 33DBC89E CE9B1627 9E0E2DEE 3539F4E6 92CBF0AD
+  ED4B752A 8F8C391D 3802C5EF A94A0B97 2DB7CC92 937B1243 3D86D21C 55D90142
+  38D5BE04 27556F78 A2EB45D4 ACE2A922 32E400A9 C278C55B FB171415 5F24F24C
+  ABE960D1 68892E64 98B2D13B 84249736 9B111FD6 A2CD1F30 32D34151 E3E9864F
+  BC330203 010001A3 53305130 1D060355 1D0E0416 04142932 9BF26A6B 33C993F1
+  8A67D4EF 80497F40 DD7B301F 0603551D 23041830 16801429 329BF26A 6B33C993
+  F18A67D4 EF80497F 40DD7B30 0F060355 1D130101 FF040530 030101FF 300D0609
+  2A864886 F70D0101 0D050003 82010100 E65A0001 C5A49CB8 354F0FD7 86242D42
+  3C7346D9 0DA661B0 3BA2BA8F AB39065E 9D07758B 25B4ACD0 641E3A5C A3BA19B4
+  FBEE42DC DFC14DC4 2E2DD570 6922B1A5 A3B36C1C 9B3B7555 29DEFC2B A17CC87D
+  9FCCCA3E 9700DAC7 DAC4DAAB BAF96143 8AFDFEA6 C5A619C7 615A948F 9B652F21
+  AC2DAB7B 0F0B8F04 21E59D55 45F38146 AB06D60D DB7BD6BB 33C84A0C DC8FEBF1
+  70C44169 C0757DC9 802D5DFF 151D0E63 0EF8E0E1 596E1855 9221EE82 6405F75F
+  D4CA843C 7587705B 008EAED2 867A0747 DF33EAD9 9017B016 9375DD10 DAD0E023
+  A5831775 BF1B6815 14FB27DB 04160E78 C49E0D5F AB2AE688 F2AFE8D6 05F1B0D4
+  DF65E642 841F2FAA 1615514B 6CABF4A8
+        quit
+!
+!
+diagnostic bootup level minimal
+!
+license udi pid ISR4331/K9 sn FLM25390AGP
+memory free low-watermark processor 69096
+!
+spanning-tree extend system-id
+!
+!
+username admin privilege 15 secret 9 $9$Viex70n3JWLKoE$FmvJTr6IbzbLazz2yCmaQfpqIZ/Qjv4YRA1ym2mOtjg
+!
+redundancy
+ mode none
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description "Connection to Cisco ISR4331-A"
+ ip address 10.1.0.14 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet0/0/1
+ description "Connection to Cisco 3750X-B"
+ no ip address
+ shutdown
+ negotiation auto
+!
+interface GigabitEthernet0/0/1.1
+ encapsulation dot1Q 1 native
+ ip address 10.1.7.20 255.255.255.0
+ standby 5 ip 10.1.7.1
+ standby 5 priority 110
+ standby 5 preempt
+!
+interface GigabitEthernet0/0/1.1101
+ encapsulation dot1Q 1101
+ ip address 10.1.1.20 255.255.255.0
+ standby 1 ip 10.1.1.1
+ standby 1 priority 110
+ standby 1 preempt
+!
+interface GigabitEthernet0/0/1.1102
+ encapsulation dot1Q 1102
+ ip address 10.1.2.20 255.255.255.0
+ standby 2 ip 10.1.2.1
+ standby 2 priority 110
+ standby 2 preempt
+!
+interface GigabitEthernet0/0/1.1103
+ encapsulation dot1Q 1103
+ ip address 10.1.3.20 255.255.255.0
+ standby 3 ip 10.1.3.1
+ standby 3 priority 110
+ standby 3 preempt
+!
+interface GigabitEthernet0/0/1.1104
+ encapsulation dot1Q 1104
+ ip address 10.1.4.20 255.255.255.0
+ standby 4 ip 10.1.4.1
+ standby 4 priority 110
+ standby 4 preempt
+!
+interface GigabitEthernet0/0/2
+ description "Connection to Cisco ISR4331-C"
+ ip address 10.1.0.17 255.255.255.252
+ negotiation auto
+!
+interface GigabitEthernet0
+ vrf forwarding Mgmt-intf
+ no ip address
+ shutdown
+ negotiation auto
+!
+!
+router eigrp 110
+ network 10.1.0.0 0.0.255.255
+!
+ip forward-protocol nd
+ip tftp source-interface GigabitEthernet0
+ip tftp blocksize 8192
+no ip http server
+ip http secure-server
+!
+ip ssh bulk-mode 131072
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+line vty 5 14
+ login
+ transport input ssh
+!
+ntp server tick.cit.lcl
+ntp server tock.cit.lcl
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+!
+!
+!
+!
+!
+!
+end
+
+G11-4331B#
