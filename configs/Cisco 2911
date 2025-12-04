@@ -1,0 +1,149 @@
+Building configuration...
+
+Current configuration : 2076 bytes
+!
+! Last configuration change at 03:18:32 EDT Tue Oct 28 2025
+! NVRAM config last updated at 23:12:10 EDT Sun Oct 26 2025
+!
+version 15.7
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname G11-2911
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+clock timezone EST -5 0
+clock summer-time EDT recurring
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name g11.cit.lcl
+ip name-server 44.2.2.44
+ip name-server 44.2.2.45
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+license udi pid CISCO2911/K9 sn FJC1853A02A
+!
+!
+username admin privilege 15 secret 5 $1$Snf2$zWNnHJWSrobfw3zl1qe8S.
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ description "Link Aggregation to Juniper"
+ ip address 10.1.0.22 255.255.255.252
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ ip address 10.1.0.6 255.255.255.252
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/1
+ ip address 10.1.0.25 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/0
+ description "Link Agg Member 1 to Juniper"
+ no ip address
+ channel-group 1
+!
+interface GigabitEthernet0/1/0
+ description "Link Agg Member 2 to Juniper"
+ no ip address
+ channel-group 1
+!
+interface Serial0/2/0
+ ip address 10.1.0.29 255.255.255.252
+!
+!
+router eigrp 111
+ network 10.1.0.0 0.0.255.255
+ redistribute rip metric 10000 100 255 1 1500
+ redistribute static
+!
+router rip
+ version 2
+ redistribute static
+ redistribute eigrp 111 metric 0
+ network 10.0.0.0
+ no auto-summary
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
+ip ssh version 2
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ login local
+ transport input ssh
+!
+scheduler allocate 20000 1000
+ntp server tick.cit.lcl
+ntp server tock.cit.lcl
+!
+end
+
+G11-2911#
