@@ -1,0 +1,293 @@
+Building configuration...
+
+Current configuration : 5704 bytes
+!
+! Last configuration change at 03:33:21 EDT Tue Oct 28 2025 by admin
+! NVRAM config last updated at 00:48:08 EDT Mon Oct 27 2025 by admin
+!
+version 15.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname G11-3750XB
+!
+boot-start-marker
+boot-end-marker
+!
+!
+username admin privilege 15 secret 5 $1$er1h$1VQNbnRJAxvudr7LHiMUN1
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local
+!
+!
+!
+!
+!
+!
+aaa session-id common
+clock timezone EST -5 0
+clock summer-time EDT recurring
+switch 1 provision ws-c3750x-48p
+system mtu routing 1500
+!
+!
+!
+!
+ip routing
+!
+!
+ip domain-name g11.cit.lcl
+ip name-server 44.2.2.44
+ip name-server 44.2.2.45
+vtp mode transparent
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint TP-self-signed-1946254336
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1946254336
+ revocation-check none
+ rsakeypair TP-self-signed-1946254336
+!
+!
+crypto pki certificate chain TP-self-signed-1946254336
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31393436 32353433 3336301E 170D3036 30313032 30303039
+  32315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39343632
+  35343333 3630819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100D373 C74E6E8D B5678E2F 0CAA9A2D B8CF43A8 DA3DBA65 E18F6E31 D34E453C
+  B98A3979 88964FC5 484A8403 B6790787 8B575C76 D03E6BF4 CC2BC31D 096BEF58
+  D18ECAA3 55AFC5AF 72D5AC1F 5A189EBD 08638F74 E8A6A539 AFB36441 BBE18D02
+  E27A3B01 F511BFA8 0921D181 6DD15E0E 4A95BF8F D3C2C73D F8599F81 0E08ED92
+  99710203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 148790B7 9BC0F252 FDB9FD57 A508BC6D B7575B5C E0301D06
+  03551D0E 04160414 8790B79B C0F252FD B9FD57A5 08BC6DB7 575B5CE0 300D0609
+  2A864886 F70D0101 05050003 81810058 F588F392 B8F0AD7F 7B96F6C7 747BE9D6
+  92AD41CB E775F6AD 5A30B437 1273D919 4A9BD121 C4A14B4A E149DAD1 E4113167
+  7EF33E4A F743F2D8 DE1F7721 DAB5EA8C 6A114F4C 4761E44D C92FE9E5 820E65CE
+  152F5278 429B4DE9 44483590 11FFE145 D12D02BC 57AE68DC 317EFDDD 6CF311DF
+  E433222B 24BE34B5 020F5FF3 926F00
+        quit
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+vlan 1101
+ name VLAN_1101
+!
+vlan 1102
+ name VLAN_1102
+!
+vlan 1103
+ name VLAN_1103
+!
+vlan 1104
+ name VLAN_1104
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0
+ no ip address
+ no ip route-cache
+!
+interface GigabitEthernet1/0/1
+ description "Connection to ISR-4331-A"
+ no switchport
+ ip address 10.1.0.34 255.255.255.252
+!
+interface GigabitEthernet1/0/2
+ description "Connection to PC3"
+ switchport trunk allowed vlan 111,112
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ shutdown
+ spanning-tree portfast edge
+!
+interface GigabitEthernet1/0/3
+ switchport trunk allowed vlan 1101-1104
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface GigabitEthernet1/0/29
+!
+interface GigabitEthernet1/0/30
+!
+interface GigabitEthernet1/0/31
+!
+interface GigabitEthernet1/0/32
+!
+interface GigabitEthernet1/0/33
+!
+interface GigabitEthernet1/0/34
+!
+interface GigabitEthernet1/0/35
+!
+interface GigabitEthernet1/0/36
+!
+interface GigabitEthernet1/0/37
+!
+interface GigabitEthernet1/0/38
+!
+interface GigabitEthernet1/0/39
+!
+interface GigabitEthernet1/0/40
+!
+interface GigabitEthernet1/0/41
+!
+interface GigabitEthernet1/0/42
+!
+interface GigabitEthernet1/0/43
+!
+interface GigabitEthernet1/0/44
+!
+interface GigabitEthernet1/0/45
+!
+interface GigabitEthernet1/0/46
+!
+interface GigabitEthernet1/0/47
+!
+interface GigabitEthernet1/0/48
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface TenGigabitEthernet1/1/1
+!
+interface TenGigabitEthernet1/1/2
+!
+interface Vlan1
+ ip address 10.1.7.15 255.255.255.0
+ standby 5 ip 10.1.7.1
+ standby 5 priority 120
+!
+interface Vlan1101
+ ip address 10.1.1.15 255.255.255.0
+ standby 1 ip 10.1.1.1
+ standby 1 priority 120
+!
+interface Vlan1102
+ ip address 10.1.2.15 255.255.255.0
+ standby 2 ip 10.1.2.1
+ standby 2 priority 120
+!
+interface Vlan1103
+ ip address 10.1.3.15 255.255.255.0
+ standby 3 ip 10.1.3.1
+ standby 3 priority 120
+!
+interface Vlan1104
+ ip address 10.1.4.15 255.255.255.0
+ standby 4 ip 10.1.4.1
+ standby 4 priority 120
+!
+!
+router eigrp 110
+ network 10.1.0.0 0.0.255.255
+ eigrp stub connected summary
+!
+ip forward-protocol nd
+!
+ip http server
+ip http secure-server
+ip ssh version 2
+!
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ exec-timeout 15 0
+ transport input ssh
+line vty 5 15
+!
+ntp server tick.cit.lcl
+ntp server tock.cit.lcl
+!
+end
+
+G11-3750XB#
